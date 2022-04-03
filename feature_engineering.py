@@ -4,7 +4,18 @@ import nltk
 import numpy as np
 from sklearn import feature_extraction
 from tqdm import tqdm
+import ssl
 
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 
 _wnl = nltk.WordNetLemmatizer()
 
